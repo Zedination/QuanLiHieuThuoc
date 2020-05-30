@@ -1,0 +1,462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLTHUOCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="fn_2_Result">
+    <Property Name="MaNV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ChucVu" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" />
+    <Property Name="Diachi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DienThoai" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="NgayLV" Type="DateTime" />
+  </ComplexType>
+  <EntityType Name="ChiTietHDN">
+    <Key>
+      <PropertyRef Name="MaHDN" />
+      <PropertyRef Name="MaThuoc" />
+    </Key>
+    <Property Name="MaHDN" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaThuoc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DonGiaNhap" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="SoluongNhap" Type="Int32" />
+    <NavigationProperty Name="HoaDonNhap" Relationship="Self.FK_ChiTietHDN_HoaDonNhap" FromRole="ChiTietHDN" ToRole="HoaDonNhap" />
+    <NavigationProperty Name="Thuoc" Relationship="Self.FK_ChiTietHDN_Thuoc" FromRole="ChiTietHDN" ToRole="Thuoc" />
+  </EntityType>
+  <EntityType Name="ChiTietHDX">
+    <Key>
+      <PropertyRef Name="MaHDX" />
+      <PropertyRef Name="MaThuoc" />
+    </Key>
+    <Property Name="MaHDX" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaThuoc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DonGiaBan" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="SoLuongBan" Type="Int32" />
+    <NavigationProperty Name="HoaDonXuat" Relationship="Self.FK_ChiTietHDX_HoaDonXuat" FromRole="ChiTietHDX" ToRole="HoaDonXuat" />
+    <NavigationProperty Name="Thuoc" Relationship="Self.FK_ChiTietHDX_Thuoc" FromRole="ChiTietHDX" ToRole="Thuoc" />
+  </EntityType>
+  <EntityType Name="HoaDonNhap">
+    <Key>
+      <PropertyRef Name="MaHDN" />
+    </Key>
+    <Property Name="MaHDN" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaNV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NgayNhap" Type="DateTime" Precision="3" />
+    <Property Name="MaNCC" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="ChiTietHDN" Relationship="Self.FK_ChiTietHDN_HoaDonNhap" FromRole="HoaDonNhap" ToRole="ChiTietHDN" />
+    <NavigationProperty Name="NhanVien" Relationship="Self.FK_HoaDonNhap_NhanVien" FromRole="HoaDonNhap" ToRole="NhanVien" />
+  </EntityType>
+  <EntityType Name="HoaDonXuat">
+    <Key>
+      <PropertyRef Name="MaHDX" />
+    </Key>
+    <Property Name="MaHDX" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaNV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="MaKH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NgayXuat" Type="DateTime" Precision="3" />
+    <Property Name="BacSi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DVCT" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ChiTietHDX" Relationship="Self.FK_ChiTietHDX_HoaDonXuat" FromRole="HoaDonXuat" ToRole="ChiTietHDX" />
+    <NavigationProperty Name="KhachHang" Relationship="Self.FK_HoaDonXuat_KhachHang" FromRole="HoaDonXuat" ToRole="KhachHang" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TenKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DienThoai" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HoaDonXuat" Relationship="Self.FK_HoaDonXuat_KhachHang" FromRole="KhachHang" ToRole="HoaDonXuat" />
+  </EntityType>
+  <EntityType Name="LoaiThuoc">
+    <Key>
+      <PropertyRef Name="MaLoaiThuoc" />
+    </Key>
+    <Property Name="MaLoaiThuoc" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TenLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Thuoc" Relationship="Self.FK_Thuoc_LoaiThuoc" FromRole="LoaiThuoc" ToRole="Thuoc" />
+  </EntityType>
+  <EntityType Name="NCC">
+    <Key>
+      <PropertyRef Name="MaNCC" />
+    </Key>
+    <Property Name="MaNCC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TenNCC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Diachi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Dienthoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Thuoc" Relationship="Self.FK_Thuoc_NCC" FromRole="NCC" ToRole="Thuoc" />
+  </EntityType>
+  <EntityType Name="NhanVien">
+    <Key>
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="MaNV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ChucVu" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Ngaysinh" Type="DateTime" Precision="3" />
+    <Property Name="Diachi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DienThoai" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="NgayLV" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="HoaDonNhap" Relationship="Self.FK_HoaDonNhap_NhanVien" FromRole="NhanVien" ToRole="HoaDonNhap" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Thuoc">
+    <Key>
+      <PropertyRef Name="MaThuoc" />
+    </Key>
+    <Property Name="MaThuoc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TenThuoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaLoaiThuoc" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="MaNCC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CongDung" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="HanSuDung" Type="DateTime" Precision="3" />
+    <Property Name="Donvitinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="DonGiaNhap" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="ChiTietHDN" Relationship="Self.FK_ChiTietHDN_Thuoc" FromRole="Thuoc" ToRole="ChiTietHDN" />
+    <NavigationProperty Name="ChiTietHDX" Relationship="Self.FK_ChiTietHDX_Thuoc" FromRole="Thuoc" ToRole="ChiTietHDX" />
+    <NavigationProperty Name="LoaiThuoc" Relationship="Self.FK_Thuoc_LoaiThuoc" FromRole="Thuoc" ToRole="LoaiThuoc" />
+    <NavigationProperty Name="NCC" Relationship="Self.FK_Thuoc_NCC" FromRole="Thuoc" ToRole="NCC" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="idUser" />
+    </Key>
+    <Property Name="idUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="v_3">
+    <Key>
+      <PropertyRef Name="MaHDX" />
+    </Key>
+    <Property Name="MaHDX" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaNV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="MaKH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NgayXuat" Type="DateTime" Precision="3" />
+    <Property Name="Soloai" Type="Int32" />
+  </EntityType>
+  <EntityType Name="v_7">
+    <Key>
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="MaNV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ChucVu" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="3" />
+    <Property Name="Diachi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DienThoai" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="NgayLV" Type="DateTime" Precision="3" />
+    <Property Name="DoanhThu" Type="Double" />
+  </EntityType>
+  <EntityType Name="vv_1">
+    <Key>
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="MaNV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ChucVu" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Ngaysinh" Type="DateTime" Precision="3" />
+    <Property Name="Diachi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DienThoai" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="NgayLV" Type="DateTime" Precision="3" />
+  </EntityType>
+  <Association Name="FK_ChiTietHDN_HoaDonNhap">
+    <End Role="HoaDonNhap" Type="Self.HoaDonNhap" Multiplicity="1" />
+    <End Role="ChiTietHDN" Type="Self.ChiTietHDN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HoaDonNhap">
+        <PropertyRef Name="MaHDN" />
+      </Principal>
+      <Dependent Role="ChiTietHDN">
+        <PropertyRef Name="MaHDN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietHDN_Thuoc">
+    <End Role="Thuoc" Type="Self.Thuoc" Multiplicity="1" />
+    <End Role="ChiTietHDN" Type="Self.ChiTietHDN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Thuoc">
+        <PropertyRef Name="MaThuoc" />
+      </Principal>
+      <Dependent Role="ChiTietHDN">
+        <PropertyRef Name="MaThuoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietHDX_HoaDonXuat">
+    <End Role="HoaDonXuat" Type="Self.HoaDonXuat" Multiplicity="1" />
+    <End Role="ChiTietHDX" Type="Self.ChiTietHDX" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HoaDonXuat">
+        <PropertyRef Name="MaHDX" />
+      </Principal>
+      <Dependent Role="ChiTietHDX">
+        <PropertyRef Name="MaHDX" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietHDX_Thuoc">
+    <End Role="Thuoc" Type="Self.Thuoc" Multiplicity="1" />
+    <End Role="ChiTietHDX" Type="Self.ChiTietHDX" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Thuoc">
+        <PropertyRef Name="MaThuoc" />
+      </Principal>
+      <Dependent Role="ChiTietHDX">
+        <PropertyRef Name="MaThuoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HoaDonNhap_NhanVien">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+    <End Role="HoaDonNhap" Type="Self.HoaDonNhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="HoaDonNhap">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HoaDonXuat_KhachHang">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+    <End Role="HoaDonXuat" Type="Self.HoaDonXuat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="HoaDonXuat">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Thuoc_LoaiThuoc">
+    <End Role="LoaiThuoc" Type="Self.LoaiThuoc" Multiplicity="0..1" />
+    <End Role="Thuoc" Type="Self.Thuoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiThuoc">
+        <PropertyRef Name="MaLoaiThuoc" />
+      </Principal>
+      <Dependent Role="Thuoc">
+        <PropertyRef Name="MaLoaiThuoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Thuoc_NCC">
+    <End Role="NCC" Type="Self.NCC" Multiplicity="0..1" />
+    <End Role="Thuoc" Type="Self.Thuoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NCC">
+        <PropertyRef Name="MaNCC" />
+      </Principal>
+      <Dependent Role="Thuoc">
+        <PropertyRef Name="MaNCC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLTHUOCEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ChiTietHDN" EntityType="Self.ChiTietHDN" />
+    <EntitySet Name="ChiTietHDX" EntityType="Self.ChiTietHDX" />
+    <EntitySet Name="HoaDonNhap" EntityType="Self.HoaDonNhap" />
+    <EntitySet Name="HoaDonXuat" EntityType="Self.HoaDonXuat" />
+    <EntitySet Name="KhachHang" EntityType="Self.KhachHang" />
+    <EntitySet Name="LoaiThuoc" EntityType="Self.LoaiThuoc" />
+    <EntitySet Name="NCC" EntityType="Self.NCC" />
+    <EntitySet Name="NhanVien" EntityType="Self.NhanVien" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Thuoc" EntityType="Self.Thuoc" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="v_3" EntityType="Self.v_3" />
+    <EntitySet Name="v_7" EntityType="Self.v_7" />
+    <EntitySet Name="vv_1" EntityType="Self.vv_1" />
+    <AssociationSet Name="FK_ChiTietHDN_HoaDonNhap" Association="Self.FK_ChiTietHDN_HoaDonNhap">
+      <End Role="HoaDonNhap" EntitySet="HoaDonNhap" />
+      <End Role="ChiTietHDN" EntitySet="ChiTietHDN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietHDN_Thuoc" Association="Self.FK_ChiTietHDN_Thuoc">
+      <End Role="Thuoc" EntitySet="Thuoc" />
+      <End Role="ChiTietHDN" EntitySet="ChiTietHDN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietHDX_HoaDonXuat" Association="Self.FK_ChiTietHDX_HoaDonXuat">
+      <End Role="HoaDonXuat" EntitySet="HoaDonXuat" />
+      <End Role="ChiTietHDX" EntitySet="ChiTietHDX" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietHDX_Thuoc" Association="Self.FK_ChiTietHDX_Thuoc">
+      <End Role="Thuoc" EntitySet="Thuoc" />
+      <End Role="ChiTietHDX" EntitySet="ChiTietHDX" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoaDonNhap_NhanVien" Association="Self.FK_HoaDonNhap_NhanVien">
+      <End Role="NhanVien" EntitySet="NhanVien" />
+      <End Role="HoaDonNhap" EntitySet="HoaDonNhap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoaDonXuat_KhachHang" Association="Self.FK_HoaDonXuat_KhachHang">
+      <End Role="KhachHang" EntitySet="KhachHang" />
+      <End Role="HoaDonXuat" EntitySet="HoaDonXuat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Thuoc_LoaiThuoc" Association="Self.FK_Thuoc_LoaiThuoc">
+      <End Role="LoaiThuoc" EntitySet="LoaiThuoc" />
+      <End Role="Thuoc" EntitySet="Thuoc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Thuoc_NCC" Association="Self.FK_Thuoc_NCC">
+      <End Role="NCC" EntitySet="NCC" />
+      <End Role="Thuoc" EntitySet="Thuoc" />
+    </AssociationSet>
+    <FunctionImport Name="fn_2" IsComposable="true" ReturnType="Collection(QLTHUOCModel.fn_2_Result)">
+      <Parameter Name="gt" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_1" ReturnType="Collection(QLTHUOCModel.sp_1_Result)" />
+    <FunctionImport Name="sp_10">
+      <Parameter Name="tenthuoc" Mode="In" Type="String" />
+      <Parameter Name="maloai" Mode="In" Type="String" />
+      <Parameter Name="mancc" Mode="In" Type="String" />
+      <Parameter Name="congdung" Mode="In" Type="String" />
+      <Parameter Name="hsd" Mode="In" Type="DateTime" />
+      <Parameter Name="dvt" Mode="In" Type="String" />
+      <Parameter Name="mathuoc" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_11">
+      <Parameter Name="mathuoc" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_2" ReturnType="Collection(QLTHUOCModel.sp_2_Result)">
+      <Parameter Name="ngaynhap" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_3">
+      <Parameter Name="thang" Mode="In" Type="Int32" />
+      <Parameter Name="doanhThu" Mode="InOut" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="sp_4">
+      <Parameter Name="mkh" Mode="In" Type="String" />
+      <Parameter Name="nam" Mode="In" Type="Int32" />
+      <Parameter Name="tien" Mode="InOut" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="sp_5" ReturnType="Collection(QLTHUOCModel.sp_5_Result)">
+      <Parameter Name="mkh" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_6">
+      <Parameter Name="mncc" Mode="In" Type="String" />
+      <Parameter Name="tongtien" Mode="InOut" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="sp_7" ReturnType="Collection(QLTHUOCModel.sp_7_Result)" />
+    <FunctionImport Name="sp_8" ReturnType="Collection(QLTHUOCModel.sp_8_Result)">
+      <Parameter Name="getmathuoc" Mode="In" Type="String" />
+      <Parameter Name="gettenthuoc" Mode="In" Type="String" />
+      <Parameter Name="start" Mode="In" Type="String" />
+      <Parameter Name="end" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_9">
+      <Parameter Name="mathuoc" Mode="In" Type="String" />
+      <Parameter Name="tenthuoc" Mode="In" Type="String" />
+      <Parameter Name="maloai" Mode="In" Type="String" />
+      <Parameter Name="mancc" Mode="In" Type="String" />
+      <Parameter Name="congdung" Mode="In" Type="String" />
+      <Parameter Name="hsd" Mode="In" Type="DateTime" />
+      <Parameter Name="dvt" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(QLTHUOCModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(QLTHUOCModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_1_Result">
+    <Property Type="String" Name="Mã_Thuốc" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Tên_Thuốc" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Loại_Thuốc" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Công_dụng" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="Hạn_sử_Dụng" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Cung_Cấp_Bởi" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_2_Result">
+    <Property Type="String" Name="Mã_Hóa_Đơn_nhập" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Mã_thuốc" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Tên_thuốc" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Công_dụng" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="Hạn_sử_dụng" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Số_lượng" Nullable="true" />
+    <Property Type="String" Name="Đơn_vị_tính" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Nhân_viên_nhập" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_5_Result">
+    <Property Type="String" Name="Mã_Thuốc" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Tên_Thuốc" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Công_dụng" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="Ngày_Mua" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_7_Result">
+    <Property Type="String" Name="Mã_Thuốc" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Tên_Thuốc" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Loại_Thuốc" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Công_dụng" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="Hạn_sử_Dụng" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Cung_Cấp_Bởi" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_8_Result">
+    <Property Type="Int64" Name="RowNum" Nullable="true" />
+    <Property Type="String" Name="MaThuoc" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="TenThuoc" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MaLoaiThuoc" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MaNCC" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="CongDung" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="HanSuDung" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Donvitinh" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,440 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLTHUOCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ChiTietHDN">
+    <Key>
+      <PropertyRef Name="MaHDN" />
+      <PropertyRef Name="MaThuoc" />
+    </Key>
+    <Property Name="MaHDN" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaThuoc" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DonGiaNhap" Type="money" />
+    <Property Name="SoluongNhap" Type="int" />
+  </EntityType>
+  <EntityType Name="ChiTietHDX">
+    <Key>
+      <PropertyRef Name="MaHDX" />
+      <PropertyRef Name="MaThuoc" />
+    </Key>
+    <Property Name="MaHDX" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="MaThuoc" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DonGiaBan" Type="money" />
+    <Property Name="SoLuongBan" Type="int" />
+  </EntityType>
+  <EntityType Name="HoaDonNhap">
+    <Key>
+      <PropertyRef Name="MaHDN" />
+    </Key>
+    <Property Name="MaHDN" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaNV" Type="nvarchar" MaxLength="20" />
+    <Property Name="NgayNhap" Type="datetime" />
+    <Property Name="MaNCC" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="HoaDonXuat">
+    <Key>
+      <PropertyRef Name="MaHDX" />
+    </Key>
+    <Property Name="MaHDX" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="MaNV" Type="nvarchar" MaxLength="20" />
+    <Property Name="MaKH" Type="nvarchar" MaxLength="20" />
+    <Property Name="NgayXuat" Type="datetime" />
+    <Property Name="BacSi" Type="nvarchar" MaxLength="100" />
+    <Property Name="DVCT" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TenKH" Type="nvarchar" MaxLength="50" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="50" />
+    <Property Name="DienThoai" Type="nvarchar" MaxLength="10" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="LoaiThuoc">
+    <Key>
+      <PropertyRef Name="MaLoaiThuoc" />
+    </Key>
+    <Property Name="MaLoaiThuoc" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenLoai" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="NCC">
+    <Key>
+      <PropertyRef Name="MaNCC" />
+    </Key>
+    <Property Name="MaNCC" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TenNCC" Type="nvarchar" MaxLength="50" />
+    <Property Name="Diachi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Dienthoai" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="NhanVien">
+    <Key>
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="MaNV" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChucVu" Type="nvarchar" MaxLength="20" />
+    <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+    <Property Name="Ngaysinh" Type="datetime" />
+    <Property Name="Diachi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="DienThoai" Type="nvarchar" MaxLength="10" />
+    <Property Name="NgayLV" Type="datetime" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Thuoc">
+    <Key>
+      <PropertyRef Name="MaThuoc" />
+    </Key>
+    <Property Name="MaThuoc" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TenThuoc" Type="nvarchar" MaxLength="50" />
+    <Property Name="MaLoaiThuoc" Type="nvarchar" MaxLength="10" />
+    <Property Name="MaNCC" Type="nvarchar" MaxLength="20" />
+    <Property Name="CongDung" Type="nvarchar" MaxLength="100" />
+    <Property Name="HanSuDung" Type="datetime" />
+    <Property Name="Donvitinh" Type="nvarchar" MaxLength="10" />
+    <Property Name="SoLuong" Type="int" />
+    <Property Name="DonGiaNhap" Type="money" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="idUser" />
+    </Key>
+    <Property Name="idUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QLTHUOC.dbo.v_3' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="v_3">
+    <Key>
+      <PropertyRef Name="MaHDX" />
+    </Key>
+    <Property Name="MaHDX" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="MaNV" Type="nvarchar" MaxLength="20" />
+    <Property Name="MaKH" Type="nvarchar" MaxLength="20" />
+    <Property Name="NgayXuat" Type="datetime" />
+    <Property Name="Soloai" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QLTHUOC.dbo.v_7' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="v_7">
+    <Key>
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="MaNV" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChucVu" Type="nvarchar" MaxLength="20" />
+    <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+    <Property Name="NgaySinh" Type="datetime" />
+    <Property Name="Diachi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="DienThoai" Type="nvarchar" MaxLength="10" />
+    <Property Name="NgayLV" Type="datetime" />
+    <Property Name="DoanhThu" Type="float" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QLTHUOC.dbo.vv_1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vv_1">
+    <Key>
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="MaNV" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChucVu" Type="nvarchar" MaxLength="20" />
+    <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+    <Property Name="Ngaysinh" Type="datetime" />
+    <Property Name="Diachi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="DienThoai" Type="nvarchar" MaxLength="10" />
+    <Property Name="NgayLV" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_ChiTietHDN_HoaDonNhap">
+    <End Role="HoaDonNhap" Type="Self.HoaDonNhap" Multiplicity="1" />
+    <End Role="ChiTietHDN" Type="Self.ChiTietHDN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HoaDonNhap">
+        <PropertyRef Name="MaHDN" />
+      </Principal>
+      <Dependent Role="ChiTietHDN">
+        <PropertyRef Name="MaHDN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietHDN_Thuoc">
+    <End Role="Thuoc" Type="Self.Thuoc" Multiplicity="1" />
+    <End Role="ChiTietHDN" Type="Self.ChiTietHDN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Thuoc">
+        <PropertyRef Name="MaThuoc" />
+      </Principal>
+      <Dependent Role="ChiTietHDN">
+        <PropertyRef Name="MaThuoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietHDX_HoaDonXuat">
+    <End Role="HoaDonXuat" Type="Self.HoaDonXuat" Multiplicity="1" />
+    <End Role="ChiTietHDX" Type="Self.ChiTietHDX" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HoaDonXuat">
+        <PropertyRef Name="MaHDX" />
+      </Principal>
+      <Dependent Role="ChiTietHDX">
+        <PropertyRef Name="MaHDX" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietHDX_Thuoc">
+    <End Role="Thuoc" Type="Self.Thuoc" Multiplicity="1" />
+    <End Role="ChiTietHDX" Type="Self.ChiTietHDX" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Thuoc">
+        <PropertyRef Name="MaThuoc" />
+      </Principal>
+      <Dependent Role="ChiTietHDX">
+        <PropertyRef Name="MaThuoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HoaDonNhap_NhanVien">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+    <End Role="HoaDonNhap" Type="Self.HoaDonNhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="HoaDonNhap">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HoaDonXuat_KhachHang">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+    <End Role="HoaDonXuat" Type="Self.HoaDonXuat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="HoaDonXuat">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Thuoc_LoaiThuoc">
+    <End Role="LoaiThuoc" Type="Self.LoaiThuoc" Multiplicity="0..1" />
+    <End Role="Thuoc" Type="Self.Thuoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiThuoc">
+        <PropertyRef Name="MaLoaiThuoc" />
+      </Principal>
+      <Dependent Role="Thuoc">
+        <PropertyRef Name="MaLoaiThuoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Thuoc_NCC">
+    <End Role="NCC" Type="Self.NCC" Multiplicity="0..1" />
+    <End Role="Thuoc" Type="Self.Thuoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NCC">
+        <PropertyRef Name="MaNCC" />
+      </Principal>
+      <Dependent Role="Thuoc">
+        <PropertyRef Name="MaNCC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="nam" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="gt" Type="nvarchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="MaNV" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChucVu" Type="nvarchar" MaxLength="20" />
+          <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+          <Property Name="NgaySinh" Type="datetime" />
+          <Property Name="Diachi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="DienThoai" Type="nvarchar" MaxLength="10" />
+          <Property Name="NgayLV" Type="datetime" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_10" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tenthuoc" Type="nvarchar" Mode="In" />
+    <Parameter Name="maloai" Type="nvarchar" Mode="In" />
+    <Parameter Name="mancc" Type="nvarchar" Mode="In" />
+    <Parameter Name="congdung" Type="nvarchar" Mode="In" />
+    <Parameter Name="hsd" Type="datetime" Mode="In" />
+    <Parameter Name="dvt" Type="nvarchar" Mode="In" />
+    <Parameter Name="mathuoc" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_11" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mathuoc" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ngaynhap" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="thang" Type="int" Mode="In" />
+    <Parameter Name="doanhThu" Type="money" Mode="InOut" />
+  </Function>
+  <Function Name="sp_4" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mkh" Type="nvarchar" Mode="In" />
+    <Parameter Name="nam" Type="int" Mode="In" />
+    <Parameter Name="tien" Type="money" Mode="InOut" />
+  </Function>
+  <Function Name="sp_5" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mkh" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_6" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mncc" Type="nvarchar" Mode="In" />
+    <Parameter Name="tongtien" Type="money" Mode="InOut" />
+  </Function>
+  <Function Name="sp_7" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_8" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="getmathuoc" Type="nvarchar" Mode="In" />
+    <Parameter Name="gettenthuoc" Type="nvarchar" Mode="In" />
+    <Parameter Name="start" Type="nvarchar" Mode="In" />
+    <Parameter Name="end" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_9" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mathuoc" Type="nvarchar" Mode="In" />
+    <Parameter Name="tenthuoc" Type="nvarchar" Mode="In" />
+    <Parameter Name="maloai" Type="nvarchar" Mode="In" />
+    <Parameter Name="mancc" Type="nvarchar" Mode="In" />
+    <Parameter Name="congdung" Type="nvarchar" Mode="In" />
+    <Parameter Name="hsd" Type="datetime" Mode="In" />
+    <Parameter Name="dvt" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="QLTHUOCModelStoreContainer">
+    <EntitySet Name="ChiTietHDN" EntityType="Self.ChiTietHDN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChiTietHDX" EntityType="Self.ChiTietHDX" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HoaDonNhap" EntityType="Self.HoaDonNhap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HoaDonXuat" EntityType="Self.HoaDonXuat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoaiThuoc" EntityType="Self.LoaiThuoc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NCC" EntityType="Self.NCC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Thuoc" EntityType="Self.Thuoc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="v_3" EntityType="Self.v_3" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [v_3].[MaHDX] AS [MaHDX], 
+    [v_3].[MaNV] AS [MaNV], 
+    [v_3].[MaKH] AS [MaKH], 
+    [v_3].[NgayXuat] AS [NgayXuat], 
+    [v_3].[Soloai] AS [Soloai]
+    FROM [dbo].[v_3] AS [v_3]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="v_7" EntityType="Self.v_7" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [v_7].[MaNV] AS [MaNV], 
+    [v_7].[HoTen] AS [HoTen], 
+    [v_7].[ChucVu] AS [ChucVu], 
+    [v_7].[GioiTinh] AS [GioiTinh], 
+    [v_7].[NgaySinh] AS [NgaySinh], 
+    [v_7].[Diachi] AS [Diachi], 
+    [v_7].[Email] AS [Email], 
+    [v_7].[DienThoai] AS [DienThoai], 
+    [v_7].[NgayLV] AS [NgayLV], 
+    [v_7].[DoanhThu] AS [DoanhThu]
+    FROM [dbo].[v_7] AS [v_7]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vv_1" EntityType="Self.vv_1" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vv_1].[MaNV] AS [MaNV], 
+    [vv_1].[HoTen] AS [HoTen], 
+    [vv_1].[ChucVu] AS [ChucVu], 
+    [vv_1].[GioiTinh] AS [GioiTinh], 
+    [vv_1].[Ngaysinh] AS [Ngaysinh], 
+    [vv_1].[Diachi] AS [Diachi], 
+    [vv_1].[Email] AS [Email], 
+    [vv_1].[DienThoai] AS [DienThoai], 
+    [vv_1].[NgayLV] AS [NgayLV]
+    FROM [dbo].[vv_1] AS [vv_1]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_ChiTietHDN_HoaDonNhap" Association="Self.FK_ChiTietHDN_HoaDonNhap">
+      <End Role="HoaDonNhap" EntitySet="HoaDonNhap" />
+      <End Role="ChiTietHDN" EntitySet="ChiTietHDN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietHDN_Thuoc" Association="Self.FK_ChiTietHDN_Thuoc">
+      <End Role="Thuoc" EntitySet="Thuoc" />
+      <End Role="ChiTietHDN" EntitySet="ChiTietHDN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietHDX_HoaDonXuat" Association="Self.FK_ChiTietHDX_HoaDonXuat">
+      <End Role="HoaDonXuat" EntitySet="HoaDonXuat" />
+      <End Role="ChiTietHDX" EntitySet="ChiTietHDX" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietHDX_Thuoc" Association="Self.FK_ChiTietHDX_Thuoc">
+      <End Role="Thuoc" EntitySet="Thuoc" />
+      <End Role="ChiTietHDX" EntitySet="ChiTietHDX" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoaDonNhap_NhanVien" Association="Self.FK_HoaDonNhap_NhanVien">
+      <End Role="NhanVien" EntitySet="NhanVien" />
+      <End Role="HoaDonNhap" EntitySet="HoaDonNhap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoaDonXuat_KhachHang" Association="Self.FK_HoaDonXuat_KhachHang">
+      <End Role="KhachHang" EntitySet="KhachHang" />
+      <End Role="HoaDonXuat" EntitySet="HoaDonXuat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Thuoc_LoaiThuoc" Association="Self.FK_Thuoc_LoaiThuoc">
+      <End Role="LoaiThuoc" EntitySet="LoaiThuoc" />
+      <End Role="Thuoc" EntitySet="Thuoc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Thuoc_NCC" Association="Self.FK_Thuoc_NCC">
+      <End Role="NCC" EntitySet="NCC" />
+      <End Role="Thuoc" EntitySet="Thuoc" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
