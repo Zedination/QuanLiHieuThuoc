@@ -1,0 +1,222 @@
+﻿
+@{
+    ViewBag.Title = "DanhSachNhanVien";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Tables</h1>
+<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+        &nbsp; <button type="button" id="btnCreate" data-toggle="modal" data-target="#createModal" class="btn btn-primary">Thêm</button>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTableNhanVien" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã nhân viên</th>
+                        <th>Họ Tên</th>
+                        <th>Chức vụ</th>
+                        <th>Giới tính</th>
+                        <th>Ngày sinh</th>
+                        <th>Địa chỉ</th>
+                        <th>Email</th>
+                        <th>Điện thoại</th>
+                        <th>Ngày làm việc</th>
+                        <th>Quản lý</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Mã nhân viên</th>
+                        <th>Họ Tên</th>
+                        <th>Chức vụ</th>
+                        <th>Giới tính</th>
+                        <th>Ngày sinh</th>
+                        <th>Địa chỉ</th>
+                        <th>Email</th>
+                        <th>Điện thoại</th>
+                        <th>Ngày làm việc</th>
+                        <th>Quản lý</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<!--Modal thêm nhân viên-->
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Thêm nhân viên</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="manhanvienmoi" class="col-form-label">Mã nhân viên:</label>
+                                <input type="text" class="form-control" id="manhanvienmoi">
+                            </div>
+                            <div class="col-md-8">
+                                <label for="tennhanvienmoi" class="col-form-label">Tên nhân viên:</label>
+                                <input type="text" class="form-control" id="tennhanvienmoi" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="chucvumoi" class="col-form-label">Chức vụ:</label>
+                                <input type="text" class="form-control" id="chucvumoi" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="gioitinhmoi" class="col-form-label">Giới tính:</label>
+                                <select class="form-control" id="gioitinhmoi">
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                    <option value="Khác">Khác</option>
+                                </select>
+                            </div>
+                            <div class="col-md-8">
+                                <label for="ngaysinhmoi" class="col-form-label">Ngày sinh:</label>
+                                <input type="date" class="form-control" id="ngaysinhmoi" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="diachimoi" class="col-form-label">Địa chỉ:</label>
+                                <input type="text" class="form-control" id="diachimoi" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="emailmoi" class="col-form-label">Email:</label>
+                                <input type="email" class="form-control" id="emailmoi" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="dienthoaimoi" class="col-form-label">Điện thoại:</label>
+                                <input type="text" class="form-control" id="dienthoaimoi" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="ngaylamviecmoi" class="col-form-label">Ngày làm việc:</label>
+                                <input type="date" class="form-control" id="ngaylamviecmoi" required>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" id="submitCreate" class="btn btn-primary">Thêm nhân viên</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal Sửa Nhân Viên-->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Sửa nhân viên</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="manhanvien" class="col-form-label">Mã nhân viên:</label>
+                                <input type="text" class="form-control" id="manhanvien" readonly>
+                            </div>
+                            <div class="col-md-8">
+                                <label for="tennhanvien" class="col-form-label">Tên nhân viên:</label>
+                                <input type="text" class="form-control" id="tennhanvien" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="chucvu" class="col-form-label">Chức vụ:</label>
+                                <input type="text" class="form-control" id="chucvu" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="gioitinh" class="col-form-label">Giới tính:</label>
+                                <select class="form-control" id="gioitinh">
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                    <option value="Khác">Khác</option>
+                                </select>
+                            </div>
+                            <div class="col-md-8">
+                                <label for="ngaysinh" class="col-form-label">Ngày sinh:</label>
+                                <input type="date" class="form-control" id="ngaysinh" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="diachi" class="col-form-label">Địa chỉ:</label>
+                                <input type="text" class="form-control" id="diachi" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="email" class="col-form-label">Email:</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="dienthoai" class="col-form-label">Điện thoại:</label>
+                                <input type="text" class="form-control" id="dienthoai" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="ngaylamviec" class="col-form-label">Ngày làm việc:</label>
+                                <input type="date" class="form-control" id="ngaylamviec" required>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" id="submitChanges" class="btn btn-primary">Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal Xóa nhân viên-->
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn có muốn xóa nhân viên này không?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"  data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" id="submitDelete">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+
