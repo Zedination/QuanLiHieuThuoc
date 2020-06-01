@@ -1,0 +1,172 @@
+﻿
+
+@{
+    ViewBag.Title = "DanhSachNCC";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Danh Sách NCC</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+        &nbsp; <button type="button" id="btnCreateNcc" data-toggle="modal" data-target="#createModalNCC" class="btn btn-primary">Thêm</button>&nbsp;<a class="btn btn-primary" href="~/NCC/ExportToExcel" role="button"><i class="far fa-file-excel"></i> Xuất báo cáo</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTableNCC" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã NCC</th>
+                        <th>Tên NCC</th>
+                        <th>Địa chỉ</th>
+                        <th>Điện thoại</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Mã NCC</th>
+                        <th>Tên NCC</th>
+                        <th>Địa chỉ</th>
+                        <th>Điện thoại</th>
+                        <th>Email</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<!--Modal thêm NCC-->
+<div class="modal fade" id="createModalNCC" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Thêm NCC</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="manccmoi" class="col-form-label">Mã NCC:</label>
+                                <input type="text" class="form-control" id="manccmoi">
+                            </div>
+                            <div class="col-md-8">
+                                <label for="tennccmoi" class="col-form-label">Tên NCC:</label>
+                                <input type="text" class="form-control" id="tennccmoi" required>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="diachimoi" class="col-form-label">Địa chỉ:</label>
+                                <input type="text" class="form-control" id="diachimoi" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="dienthoaimoi" class="col-form-label">Điện thoại:</label>
+                                <input type="text" class="form-control" id="dienthoaimoi" required>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="emailmoi" class="col-form-label">Email:</label>
+                                <input type="email" class="form-control" id="emailmoi" required>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" id="submitCreateNCC" class="btn btn-primary">Thêm NCC</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal Sửa NCC-->
+<div class="modal fade" id="editModalNCC" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Sửa NCC</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="mancc" class="col-form-label">Mã NCC:</label>
+                                <input type="text" class="form-control" id="mancc" readonly>
+                            </div>
+                            <div class="col-md-8">
+                                <label for="tenncc" class="col-form-label">Tên NCC:</label>
+                                <input type="text" class="form-control" id="tenncc" required>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="diachi" class="col-form-label">Địa chỉ:</label>
+                                <input type="text" class="form-control" id="diachi" required>
+                            </div>
+                        </div>
+                       
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="dienthoai" class="col-form-label">Điện thoại:</label>
+                                <input type="text" class="form-control" id="dienthoai" required>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="email" class="col-form-label">Email:</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" id="submitChangesNCC" class="btn btn-primary">Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal Xóa NCC-->
+<!-- Modal -->
+<div class="modal fade" id="deleteModalNCC" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn có muốn xóa NCC này không?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" id="submitDeleteNCC">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>

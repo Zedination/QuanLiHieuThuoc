@@ -71,3 +71,12 @@ D:\Document\Lap Trinh Web - C# - Co Sao\Bai tap lon ASP.NET\QuanLiHieuThuoc\Quan
 D:\Document\Lap Trinh Web - C# - Co Sao\Bai tap lon ASP.NET\QuanLiHieuThuoc\QuanLiHieuThuoc\obj\Debug\QuanLiHieuThuoc.csproj.CopyComplete
 D:\Document\Lap Trinh Web - C# - Co Sao\Bai tap lon ASP.NET\QuanLiHieuThuoc\QuanLiHieuThuoc\obj\Debug\QuanLiHieuThuoc.dll
 D:\Document\Lap Trinh Web - C# - Co Sao\Bai tap lon ASP.NET\QuanLiHieuThuoc\QuanLiHieuThuoc\obj\Debug\QuanLiHieuThuoc.pdb
+D:\Document\Lap Trinh Web - C# - Co Sao\Bai tap lon ASP.NET\QuanLiHieuThuoc\QuanLiHieuThuoc\bin\ClosedXML.dll
+D:\Document\Lap Trinh Web - C# - Co Sao\Bai tap lon ASP.NET\QuanLiHieuThuoc\QuanLiHieuThuoc\bin\ClosedXML.Extensions.Mvc.dll
+D:\Document\Lap Trinh Web - C# - Co Sao\Bai tap lon ASP.NET\QuanLiHieuThuoc\QuanLiHieuThuoc\bin\DocumentFormat.OpenXml.dll
+D:\Document\Lap Trinh Web - C# - Co Sao\Bai tap lon ASP.NET\QuanLiHieuThuoc\QuanLiHieuThuoc\bin\ExcelNumberFormat.dll
+D:\Document\Lap Trinh Web - C# - Co Sao\Bai tap lon ASP.NET\QuanLiHieuThuoc\QuanLiHieuThuoc\bin\FastMember.Signed.dll
+D:\Document\Lap Trinh Web - C# - Co Sao\Bai tap lon ASP.NET\QuanLiHieuThuoc\QuanLiHieuThuoc\bin\System.IO.Packaging.dll
+D:\Document\Lap Trinh Web - C# - Co Sao\Bai tap lon ASP.NET\QuanLiHieuThuoc\QuanLiHieuThuoc\bin\ClosedXML.xml
+D:\Document\Lap Trinh Web - C# - Co Sao\Bai tap lon ASP.NET\QuanLiHieuThuoc\QuanLiHieuThuoc\bin\DocumentFormat.OpenXml.xml
+D:\Document\Lap Trinh Web - C# - Co Sao\Bai tap lon ASP.NET\QuanLiHieuThuoc\QuanLiHieuThuoc\bin\ExcelNumberFormat.xml

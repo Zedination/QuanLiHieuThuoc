@@ -25,6 +25,17 @@ namespace QuanLiHieuThuoc.Controllers
                 return RedirectToAction("Login", "Login");
             }
         }
+        public ActionResult Chart()
+        {
+            if (Session["idUser"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+        }
         
     }
     

@@ -1,0 +1,239 @@
+﻿
+@{
+    ViewBag.Title = "DanhSachHoaDonXuat";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+
+<h1 class="h3 mb-2 text-gray-800">Danh sách hóa đơn xuất</h1>
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        &nbsp; <button type="button" id="btnCreateHDX" data-toggle="modal" data-target="#createModalHDX" class="btn btn-primary">Thêm</button>&nbsp;<a class="btn btn-primary" href="~/HoaDonXuat/ExportToExcel" role="button"><i class="far fa-file-excel"></i> Xuất báo cáo</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTableHDX" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã hoa đơn xuất</th>
+                        <th>Mã khách hàng</th>
+                        <th>Mã nhân viên</th>
+                        <th>Ngày xuất</th>
+                        <th>Bác sĩ</th>
+                        <th>Đơn vị công tác</th>
+                        <th>Quản lý</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Mã hoa đơn xuất</th>
+                        <th>Mã khách hàng</th>
+                        <th>Mã nhân viên</th>
+                        <th>Ngày xuất</th>
+                        <th>Bác sĩ</th>
+                        <th>Đơn vị công tác</th>
+                        <th>Quản lý</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createModalHDX" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Thêm hóa đơn xuất</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="mahoadonxuatmoi" class="col-form-label">Mã hóa đơn xuất:</label>
+                                <input type="text" class="form-control" id="mahoadonxuatmoi">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="manhanvienmoi" class="col-form-label">Mã nhân viên:</label>
+                                <input type="text" class="form-control" id="manhanvienmoi" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="makhachhangmoi" class="col-form-label">Mã khách hàng:</label>
+                                <input type="text" class="form-control" id="makhachhangmoi" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="ngayxuatmoi" class="col-form-label">Ngày xuất:</label>
+                                <input type="date" class="form-control" id="ngayxuatmoi" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="bacsimoi" class="col-form-label">Bác sĩ:</label>
+                                <input type="text" class="form-control" id="bacsimoi" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="dvctmoi" class="col-form-label">Đơn vị công tác:</label>
+                                <input type="text" class="form-control" id="dvctmoi" required>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" id="submitCreateHDX" class="btn btn-primary">Thêm nhân viên</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editModalHDX" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Sửa hóa đơn xuất</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="mahoadonxuat" class="col-form-label">Mã hóa đơn xuất:</label>
+                                <input type="text" class="form-control" id="mahoadonxuat">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="manhanvien" class="col-form-label">Mã nhân viên:</label>
+                                <input type="text" class="form-control" id="manhanvien" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="makhachhang" class="col-form-label">Mã khách hàng:</label>
+                                <input type="text" class="form-control" id="makhachhang" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="ngayxuat" class="col-form-label">Ngày xuất:</label>
+                                <input type="date" class="form-control" id="ngayxuat" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="bacsi" class="col-form-label">Bác sĩ:</label>
+                                <input type="text" class="form-control" id="bacsi" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="dvct" class="col-form-label">Đơn vị công tác:</label>
+                                <input type="text" class="form-control" id="dvct" required>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" id="submitChangesHDX" class="btn btn-primary">Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModalHDX" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn có muốn xóa hóa đơn xuất này không?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" id="submitDeleteHDX">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Chi tiết hdx-->
+<!--Modal show datatables chi tiết hóa đơn nhập-->
+<div class="modal fade" id="DetailModalCTHDX" tabindex="-1" role="dialog" aria-labelledby="DetailModalCTHDX" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Chi tiết hóa đơn nhập</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div style="margin-bottom: 20px;" class="row">
+                    <div class="col-md-12">
+                        <button type="button" id="SubmitCreateCTHDX" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Thêm</button>&nbsp;
+                        <button type="button" id="SubmitEditCTHDX" class="btn btn-primary"><i class="far fa-edit"></i> Sửa</button>&nbsp;
+                        <button type="button" id="SubmitDeleteCTHDX" class="btn btn-primary"><i class="far fa-trash-alt"></i> Xóa</button>
+                        <button type="button" id="SubmitResetCRUDHDX" class="btn btn-primary"><i class="fas fa-toilet-paper"></i> Reset crud</button>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="mahdx-ct" class="col-form-label">Mã HDX:</label>
+                        <input type="text" class="form-control" id="mahdx-ct" readonly>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="mathuoc-ctx" class="col-form-label">Mã thuốc:</label>
+                        <select class="form-control" id="mathuoc-ctx">
+                            @{ foreach (var item in ViewBag.listmathuoc)
+                                            {
+                                <option value=@item>@item</option> }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="dongiaban-ct" class="col-form-label">Đơn giá bán:</label>
+                        <input type="text" class="form-control" id="dongiaban-ct">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="soluongban-ct" class="col-form-label">Số lượng bán:</label>
+                        <input type="text" class="form-control" id="soluongban-ct">
+                    </div>
+                </div>
+                <table class="table table-bordered" id="dataTableCTHoaDonXuat" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Mã hóa đơn xuất</th>
+                            <th>Mã thuốc</th>
+                            <th>Đơn giá bán</th>
+                            <th>Số lượng bán</th>
+                            <th>Quản lý</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Mã hóa đơn xuất</th>
+                            <th>Mã thuốc</th>
+                            <th>Đơn giá bán</th>
+                            <th>Số lượng bán</th>
+                            <th>Quản lý</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" id="submitDeleteHDX">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

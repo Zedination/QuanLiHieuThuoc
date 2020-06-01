@@ -3,10 +3,13 @@ using QuanLiHieuThuoc.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace QuanLiHieuThuoc.Controllers
 {
@@ -145,6 +148,25 @@ namespace QuanLiHieuThuoc.Controllers
             {
                 return Json(new { success = false, message = "Xóa không thành công, lỗi: " + e.Message }, JsonRequestBehavior.AllowGet);
             }
+        }
+        public ActionResult ExportToExcel()
+        {
+            var gv = new GridView();
+            var data = db.Thuoc.ToList();
+            gv.DataSource = data;
+            gv.DataBind();
+            Response.ClearContent();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment; filename=DemoExcel.xls");
+            Response.ContentType = "application/ms-excel";
+            Response.Charset = "utf-8";
+            StringWriter objStringWriter = new StringWriter();
+            HtmlTextWriter objHtmlTextWriter = new HtmlTextWriter(objStringWriter);
+            gv.RenderControl(objHtmlTextWriter);
+            Response.Output.Write(objStringWriter.ToString());
+            Response.Flush();
+            Response.End();
+            return View("DanhSachThuoc");
         }
     }
 }
