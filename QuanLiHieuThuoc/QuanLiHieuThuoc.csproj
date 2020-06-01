@@ -1715,13 +1715,17 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KhachHangController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NhanVienController.cs" />
+    <Compile Include="Controllers\ThuocController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="JsonModel\KhachHangJson.cs" />
     <Compile Include="JsonModel\ListNhanVienJson.cs" />
     <Compile Include="JsonModel\NhanVienJson.cs" />
+    <Compile Include="JsonModel\ThuocJson.cs" />
     <Compile Include="Models\ChiTietHDN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -1987,6 +1991,8 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\NhanVien\DanhSachNhanVien.cshtml" />
+    <Content Include="Views\Thuoc\DanhSachThuoc.cshtml" />
+    <Content Include="Views\KhachHang\DanhSachKhachHang.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

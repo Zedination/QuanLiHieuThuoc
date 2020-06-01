@@ -1,0 +1,238 @@
+﻿
+@{
+    ViewBag.Title = "DanhSachThuoc";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Tables</h1>
+<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        &nbsp; <button type="button" id="btnCreateThuoc" data-toggle="modal" data-target="#createModalThuoc" class="btn btn-primary">Thêm</button>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTableThuoc" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã thuốc</th>
+                        <th>Tên thuốc</th>
+                        <th>Mã loại thuốc</th>
+                        <th>Mã NCC</th>
+                        <th>Công dụng</th>
+                        <th>Hạn sử dụng</th>
+                        <th>Đơn vị tính</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá nhập</th>
+                        <th>Quản lý</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Mã thuốc</th>
+                        <th>Tên thuốc</th>
+                        <th>Mã loại thuốc</th>
+                        <th>Mã NCC</th>
+                        <th>Công dụng</th>
+                        <th>Hạn sử dụng</th>
+                        <th>Đơn vị tính</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá nhập</th>
+                        <th>Quản lý</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<!--Modal thêm thuốc-->
+<div class="modal fade" id="createModalThuoc" tabindex="-1" role="dialog" aria-labelledby="createModalThuoc" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Thêm thuốc</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="mathuocmoi" class="col-form-label">Mã thuốc:</label>
+                                <input type="text" class="form-control" id="mathuocmoi">
+                            </div>
+                            <div class="col-md-8">
+                                <label for="tenthuocmoi" class="col-form-label">Tên thuốc:</label>
+                                <input type="text" class="form-control" id="tenthuocmoi" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="maloaithuocmoi" class="col-form-label">Mã loại thuốc:</label>
+                                
+                                <select class="form-control" id="maloaithuocmoi">
+                                    @{
+                                        foreach (var item in ViewBag.listloaithuoc)
+                                        {
+                                            <option value=@item>@item</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="manccmoi" class="col-form-label">Mã ncc:</label>
+                                <select class="form-control" id="manccmoi">
+                                    @{ 
+                                        foreach(var item in ViewBag.listncc)
+                                        {
+                                            <option value=@item>@item</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="congdungmoi" class="col-form-label">Công dụng</label>
+                                <input type="text" class="form-control" id="congdungmoi" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="hansudungmoi" class="col-form-label">Hạn sử dụng:</label>
+                                <input type="date" class="form-control" id="hansudungmoi" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="donvitinhmoi" class="col-form-label">Đơn vị tính:</label>
+                                <input type="text" class="form-control" id="donvitinhmoi" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="soluongmoi" class="col-form-label">Số lượng:</label>
+                                <input type="text" class="form-control" id="soluongmoi" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="dongianhapmoi" class="col-form-label">Đơn giá nhập</label>
+                                <input type="text" class="form-control" id="dongianhapmoi" required>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" id="submitCreateThuoc" class="btn btn-primary">Thêm thuốc</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal Sửa thuốc-->
+<div class="modal fade" id="editModalThuoc" tabindex="-1" role="dialog" aria-labelledby="editModalThuoc" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Sửa thuốc</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="mathuoc" class="col-form-label">Mã thuốc:</label>
+                                <input type="text" class="form-control" id="mathuoc" readonly>
+                            </div>
+                            <div class="col-md-8">
+                                <label for="tenthuoc" class="col-form-label">Tên thuốc:</label>
+                                <input type="text" class="form-control" id="tenthuoc" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="maloaithuoc" class="col-form-label">Mã loại thuốc:</label>
+
+                                <select class="form-control" id="maloaithuoc">
+                                    @{
+                                        foreach (var item in ViewBag.listloaithuoc)
+                                        {
+                                            <option value=@item>@item</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="mancc" class="col-form-label">Mã ncc:</label>
+                                <select class="form-control" id="mancc">
+                                    @{
+                                        foreach (var item in ViewBag.listncc)
+                                        {
+                                            <option value=@item>@item</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="congdung" class="col-form-label">Công dụng</label>
+                                <input type="text" class="form-control" id="congdung" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="hansudung" class="col-form-label">Hạn sử dụng:</label>
+                                <input type="date" class="form-control" id="hansudung" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="donvitinh" class="col-form-label">Đơn vị tính:</label>
+                                <input type="text" class="form-control" id="donvitinh" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="soluong" class="col-form-label">Số lượng:</label>
+                                <input type="text" class="form-control" id="soluong" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="dongianhap" class="col-form-label">Đơn giá nhập</label>
+                                <input type="text" class="form-control" id="dongianhap" required>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" id="submitChangesThuoc" class="btn btn-primary">Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal Xóa thuốc-->
+<!-- Modal -->
+<div class="modal fade" id="deleteModalThuoc" tabindex="-1" role="dialog" aria-labelledby="deleteModalThuoc" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn có muốn xóa thuốc này không?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" id="submitDeleteThuoc">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -11,7 +11,8 @@ namespace QuanLiHieuThuoc.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class NhanVien
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,6 +27,8 @@ namespace QuanLiHieuThuoc.Models
         public string GioiTinh { get; set; }
         public Nullable<System.DateTime> Ngaysinh { get; set; }
         public string Diachi { get; set; }
+        [Required]
+        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}")]
         public string Email { get; set; }
         public string DienThoai { get; set; }
         public Nullable<System.DateTime> NgayLV { get; set; }
